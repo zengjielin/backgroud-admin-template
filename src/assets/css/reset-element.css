@@ -1,0 +1,59 @@
+.el-table__footer-wrapper,
+.el-table__header-wrapper {
+  background: #e7e8f4;
+  overflow: hidden;
+}
+
+.el-table th,
+.el-table tr {
+  background: transparent;
+}
+
+.el-table thead {
+  color: #383b4d;
+  font-weight: 600;
+}
+
+.el-range-editor.is-active,
+.el-range-editor.is-active:hover,
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #e2e3ea;
+}
+
+.el-select .el-input__inner:focus {
+  border-color: #C0C4CC;
+}
+.el-textarea__inner:focus {
+  border-color: #C0C4CC;
+}
+.el-select-dropdown__item.selected {
+  color: #383B4D;
+  font-weight: 700;
+}
+.el-input__inner:focus {
+  border-color: #e2e3ea;
+}
+
+.el-input__inner,
+.el-textarea__inner,
+.el-range-editor.el-input__inner {
+  border-color: #EBECF0;
+  background-color: #F9F7F4;
+  color: #383b4d;
+  font-weight: 600;
+  font-family: '微软雅黑', 'Rajdhani-Medium'
+}
+.el-date-editor .el-range-input{
+  background: transparent;
+}
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: #fe9527;
+  background: #fe9527;
+}
+.el-radio__inner:hover {
+  border-color: #fe9527;
+}
+.el-radio__input.is-checked+.el-radio__label {
+  color: #b3b5c3;
+}
+
