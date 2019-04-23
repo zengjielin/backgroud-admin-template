@@ -27,7 +27,6 @@ export default {
     handleCommand(item) {
       switch (item) {
         case "loginout":
-          console.log("logout-out");
           break;
         default:
       }

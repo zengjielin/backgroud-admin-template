@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import Cookie from "js-cookie";
 export default {
   data() {
     return {
@@ -41,6 +42,7 @@ export default {
         this.currentLeft -= 240;
         tagScrollView.style.left = `-${this.currentLeft}px`;
       }
+      Cookie.set("current-left", this.currentLeft);
     },
     monitorWinResize() {
       this.tagWrapperWidth = this.$refs.tagwrapper.clientWidth;
@@ -50,6 +52,11 @@ export default {
           this.tagWrapperWidth = this.$refs.tagwrapper.clientWidth;
         })();
       };
+      if (Cookie.get("current-left")) {
+        this.currentLeft = Number(Cookie.get("current-left"));
+        let tagScrollView = document.querySelector(".scroll-tag-view");
+        tagScrollView.style.left = `-${this.currentLeft}px`;
+      }
     }
   },
   mounted() {

@@ -1,36 +1,53 @@
 <template>
     <div class="side-bar-wrapper" :class="{hideSidebar: isCollapse}">
-        <el-menu default-active="1-1" router unique-opened :collapse="isCollapse">
-            <el-submenu index="1">
+        <el-menu :default-active="activeRoute" router unique-opened :collapse="isCollapse" @select='selectMenu' @open="handleOpen">
+          <div v-for="(menuItem,index) in menuList" :key="index">
+            <el-submenu :index="menuItem.title"  v-if="menuItem.children && menuItem.children.length > 1">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span slot="title">导航一</span>
+                    <span slot="title">{{menuItem.title}}</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
+                    <el-menu-item :index="subItem.path" v-for="(subItem,index) in menuItem.children" :key="index">{{subItem.title}}</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
-            <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
+            <div v-else-if="menuItem.children && menuItem.children.length === 1">
+                <el-menu-item :index="subItem.path"  v-for="(subItem,index) in menuItem.children" :key="index">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">{{subItem.title}}</span>
+                </el-menu-item>
+            </div>
+          </div>
         </el-menu>
     </div>
 </template>
 
 <script>
+import Cookie from "js-cookie";
 export default {
   data() {
-    return {};
+    return {
+      activeRoute: ""
+    };
   },
   computed: {
     isCollapse() {
       return this.$store.state.sidebarStatus;
+    },
+    menuList() {
+      return this.$router.options.routes;
+    }
+  },
+  methods: {
+    handleOpen(key, keyPath) {},
+    selectMenu(index, indexPath) {
+      this.activeRoute = index;
+      Cookie.set("active-route", index);
+    }
+  },
+  created() {
+    if (Cookie.get("active-route")) {
+      this.activeRoute = Cookie.get("active-route");
     }
   }
 };
@@ -58,10 +75,14 @@ export default {
   }
   .el-submenu__title {
     background-color: #1f1f30 !important;
+    color: #a3a3a7;
   }
   .el-submenu.is-active .el-submenu__title {
     background: #19192a !important;
     color: #ea8a27 !important;
+  }
+  .el-submenu.is-active .el-submenu__title i {
+    color: #ea8a27;
   }
   .el-submenu.is-active .el-submenu__title:hover {
     // background: #ededed !important;
