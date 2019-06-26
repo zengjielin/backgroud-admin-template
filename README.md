@@ -3,7 +3,7 @@
 > backgroud-admin-template
 
 ## Build Setup
-
+add ssh
 ``` bash
 # install dependencies
 npm install
