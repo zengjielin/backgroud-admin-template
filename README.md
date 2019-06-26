@@ -1,6 +1,6 @@
 # backgroud-admin-template
 
-> A Vue.js project
+> backgroud-admin-template
 
 ## Build Setup
 
